@@ -184,10 +184,10 @@ class APIController extends Controller
             $response["message"] = "please check the parameters";
             $response["errors"] = $validator->errors();
         } else {
-            if($request->sender_number == $request->receiver_number) {
+            if($request->receiver_number == $request->user()->norek) {
                 $response["code"] = 400;
                 $response["status"] = \false;
-                $response["message"] = "sender number cannot be the same on receiver number ";
+                $response["message"] = "Receiver number cannot be the same on your bank account number ";
             } else {
                 $findSender = $request->user();
                 $findReceiver = User::where("norek", $request->receiver_number)->first();
